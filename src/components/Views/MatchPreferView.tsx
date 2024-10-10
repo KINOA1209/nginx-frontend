@@ -32,11 +32,10 @@ export const MatchPreferView: React.FC<MatchViewProps> = ({ prefers }) => {
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   const getMatchData = async (prefer: Preference) => {
     const response = await axios.post(
-      `${apiUrl}/api/inventory/match`,
+      '/api/inventory/match',
       prefer
     );
     const data: Inventory[] = response.data;

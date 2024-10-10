@@ -40,7 +40,6 @@ const parseCSV = (csvText: string): Preference[] => {
 export const UploadPrefer: React.FC = () => {
   const navigate = useNavigate();
   const [csvData, setCsvData] = useState<Preference[]>([]);
-  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleFileUpload = (event: ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files?.[0];
@@ -52,7 +51,7 @@ export const UploadPrefer: React.FC = () => {
 
         setCsvData(parsedData);
         axios
-          .post(`${apiUrl}/api/preference`, parsedData)
+          .post('/api/preference', parsedData)
           .finally(() => {
             console.log("Preference data is added!");
           });

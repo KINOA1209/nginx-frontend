@@ -18,10 +18,8 @@ export const InventoryTable: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
   const [inventoryCount, setInventoryCount] = useState<number>(0);
 
-  const apiUrl = process.env.REACT_APP_API_URL;
-
   const fetchData = async () => {
-    const response = await axios.get(`${apiUrl}/api/inventory`, {
+    const response = await axios.get('/api/inventory', {
       params: { page: page + 1, perpage: rowsPerPage },
     });
     const data: Inventory[] = response.data;
@@ -30,7 +28,7 @@ export const InventoryTable: React.FC = () => {
 
   useEffect(() => {
     const count = axios
-      .get(`${apiUrl}/api/inventory/count`)
+      .get('/api/inventory/count')
       .then((response) => setInventoryCount(parseInt(response.data)));
   }, [inventoryCount]);
 
